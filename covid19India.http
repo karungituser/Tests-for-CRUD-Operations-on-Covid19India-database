@@ -1,0 +1,36 @@
+//GET API1
+
+GET http://localhost:3000/states/
+###
+
+//GET API2
+
+GET http://localhost:3000/states/:stateId/
+###
+
+// POST API3
+
+POST http://localhost:3000/districts/
+###
+
+//GET API4
+
+GET http://localhost:3000/districts/:districtId/
+###
+
+//DELETE API5
+DELETE http://localhost:3000/districts/:districtId/
+###
+
+//PUT API6
+
+PUT http://localhost:3000/districts/:districtId/
+###
+
+//GET API7
+GET http://localhost:3000/states/:stateId/stats/
+###
+
+//GET API8
+
+GET http://localhost:3000/districts/:districtId/details/
