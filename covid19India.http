@@ -28,9 +28,9 @@ PUT http://localhost:3000/districts/:districtId/
 ###
 
 //GET API7
-GET http://localhost:3000/states/:stateId/stats/
+GET http://localhost:3000/states/3/stats/
 ###
 
 //GET API8
 
-GET http://localhost:3000/districts/:districtId/details/
+GET http://localhost:3000/districts/2/details/

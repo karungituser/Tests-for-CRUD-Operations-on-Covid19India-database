@@ -106,23 +106,18 @@ app.put("/districts/:districtId/", async (request, response) => {
 //GET API7
 app.get("/states/:stateId/stats/", async (request, response) => {
   const { stateId } = request.params;
-  const stateStatics = `SELECT SUM(cases),SUM(cured),SUM(active),SUM(deaths) FROM state WHERE state_id=${stateId};`;
-  await db.get(stateStatics);
-  response.send({
-    totalCases: stats["SUM(cases)"],
-    totalCured: stats["SUM(cured)"],
-    totalActive: stats["SUM(active)"],
-    totalDeaths: stats["SUM(deaths)"],
-  });
+  const getStateStatics = `SELECT SUM(cases) AS totalCases,SUM(cured) AS totalCured,SUM(active) AS totalActive,SUM(deaths) AS totalDeaths FROM state NATURAL JOIN district WHERE state_id=${stateId};`;
+  const stateStatics = await db.get(getStateStatics);
+  response.send(stateStatics);
 });
 
 //GET API8
 
 app.get("/districts/:districtId/details/", async (request, response) => {
   const { districtId } = request.params;
-  const getStateNames = `SELECT state_name FROM state NATURAL JOIN district WHERE district_id='${districtId}';`;
-  const stateNamesArray = await db.get(getStateNames);
-  response.send({ stateName: state.state_name });
+  const getStateNames = `SELECT state_name AS stateName FROM state NATURAL JOIN district WHERE district_id='${districtId}';`;
+  const stateNames = await db.get(getStateNames);
+  response.send(stateNames);
 });
 
 module.exports = app;
